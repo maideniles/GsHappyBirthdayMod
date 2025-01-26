@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gabbysgrove:block/chromatic_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gabbysgrove:block/chromatic_wood"
+    },
+    "axis=z": {
+      "model": "gabbysgrove:block/chromatic_wood_horizontal",
+      "x": 90
+    }
+  }
+}

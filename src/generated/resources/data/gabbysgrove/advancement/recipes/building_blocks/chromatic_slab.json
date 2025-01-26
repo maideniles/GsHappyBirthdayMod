@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chromatic_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gabbysgrove:chromatic_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gabbysgrove:chromatic_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_chromatic_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gabbysgrove:chromatic_slab"
+    ]
+  }
+}

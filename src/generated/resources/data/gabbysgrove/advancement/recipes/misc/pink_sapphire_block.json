@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pink_sapphire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gabbysgrove:pink_sapphire_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gabbysgrove:pink_sapphire_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pink_sapphire"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gabbysgrove:pink_sapphire_block"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "gabbysgrove:block/stripped_chromatic_log",
+    "side": "gabbysgrove:block/stripped_chromatic_log"
+  }
+}

@@ -1,0 +1,8 @@
+// 1.21.1	2025-01-25T22:44:59.3731117	Tags for minecraft:block mod id gabbysgrove
+e1763289c43f19f68054d502cede41bd4c8346b8 data/minecraft/tags/block/fences.json
+4b180ada620738937afc13e4338d7e51794e9c90 data/minecraft/tags/block/leaves.json
+2ac2b5880a38e923441c97145eb0238b5d4bf04f data/minecraft/tags/block/logs.json
+5543aea7306ed964628a4829fe894b70be0f194a data/minecraft/tags/block/mineable/axe.json
+5dfb54d2dd6cecd92462c035b4a78df043ae0978 data/minecraft/tags/block/mineable/pickaxe.json
+05e91b60e2d5b74ecc3b45dd0b03face383be660 data/minecraft/tags/block/wooden_doors.json
+e1763289c43f19f68054d502cede41bd4c8346b8 data/minecraft/tags/block/wooden_fences.json

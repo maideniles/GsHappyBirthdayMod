@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gabbysgrove:block/chromatic_slab"
+    },
+    "type=double": {
+      "model": "gabbysgrove:block/chromatic_planks"
+    },
+    "type=top": {
+      "model": "gabbysgrove:block/chromatic_slab_top"
+    }
+  }
+}
