@@ -71,28 +71,28 @@ public class GGItemModelProvider extends ItemModelProvider {
 
 
         //FLOWERS//
-        generated(GGBlocks.BLEEDING_HEARTS.getId().getPath(), prefix("block/flowers/bleeding_hearts"));
-        generated(GGBlocks.HIBISCUS.getId().getPath(), prefix("block/flowers/hibiscus"));
-        generated(GGBlocks.PRICKLY_PEAR_CACTUS.getId().getPath(), prefix("block/flowers/prickly_pear_cactus"));
-        generated(GGBlocks.GREEN_LACE_PRIMROSE.getId().getPath(), prefix("block/flowers/green_lace_primrose"));
-        generated(GGBlocks.GREEN_GAMBLER_HELLEBORUS.getId().getPath(), prefix("block/flowers/green_gambler_helleborus"));
-        generated(GGBlocks.TURQUOISE_IXIA.getId().getPath(), prefix("block/flowers/turquoise_ixia"));
-        generated(GGBlocks.BLUE_CHICORY.getId().getPath(), prefix("block/flowers/blue_chicory"));
-        generated(GGBlocks.BLUE_SAGE_SALVIA.getId().getPath(), prefix("block/flowers/blue_sage_salvia"));
-        generated(GGBlocks.VERBENA_LANAI.getId().getPath(), prefix("block/flowers/verbena_lanai"));
-        generated(GGBlocks.SNAPDRAGON.getId().getPath(), prefix("block/flowers/snapdragon"));
-        generated(GGBlocks.GERBERA_DAISY.getId().getPath(), prefix("block/flowers/gerbera_daisy"));
-        generated(GGBlocks.MOONFLOWER_CACTUS.getId().getPath(), prefix("block/flowers/mooflower_cactus"));
-        generated(GGBlocks.WHITE_SAGE_SALVIA.getId().getPath(), prefix("block/flowers/white_sage_salvia"));
-        generated(GGBlocks.ANGEL_WINGS_SENECIO.getId().getPath(), prefix("block/flowers/angel_wings_senecio"));
-        generated(GGBlocks.PENNY_BLACK.getId().getPath(), prefix("block/flowers/penny_black"));
-        generated(GGBlocks.CYMBIDIUM.getId().getPath(), prefix("block/flowers/cymbidium"));
+        generated(GGBlocks.BLEEDING_HEARTS.getId().getPath(), prefix("block/bleeding_hearts"));
+        generated(GGBlocks.HIBISCUS.getId().getPath(), prefix("block/hibiscus"));
+        generated(GGBlocks.PRICKLY_PEAR_CACTUS.getId().getPath(), prefix("block/prickly_pear_cactus"));
+        generated(GGBlocks.GREEN_LACE_PRIMROSE.getId().getPath(), prefix("block/green_lace_primrose"));
+        generated(GGBlocks.GREEN_GAMBLER_HELLEBORUS.getId().getPath(), prefix("block/green_gambler_helleborus"));
+        generated(GGBlocks.TURQUOISE_IXIA.getId().getPath(), prefix("block/turquoise_ixia"));
+        generated(GGBlocks.BLUE_CHICORY.getId().getPath(), prefix("block/blue_chicory"));
+        generated(GGBlocks.BLUE_SAGE_SALVIA.getId().getPath(), prefix("block/blue_sage_salvia"));
+        generated(GGBlocks.VERBENA_LANAI.getId().getPath(), prefix("block/verbena_lanai"));
+        generated(GGBlocks.SNAPDRAGON.getId().getPath(), prefix("block/snapdragon"));
+        generated(GGBlocks.GERBERA_DAISY.getId().getPath(), prefix("block/gerbera_daisy"));
+        generated(GGBlocks.MOONFLOWER_CACTUS.getId().getPath(), prefix("block/moonflower_cactus"));
+        generated(GGBlocks.WHITE_SAGE_SALVIA.getId().getPath(), prefix("block/white_sage_salvia"));
+        generated(GGBlocks.ANGEL_WINGS_SENECIO.getId().getPath(), prefix("block/angel_wings_senecio"));
+        generated(GGBlocks.PENNY_BLACK.getId().getPath(), prefix("block/penny_black"));
+        generated(GGBlocks.CYMBIDIUM.getId().getPath(), prefix("block/cymbidium"));
 
-        generated(GGBlocks.RHODOTUS.getId().getPath(), prefix("block/flowers/rhodotus"));
-        generated(GGBlocks.DEATH_CAP.getId().getPath(), prefix("block/flowers/death_cap"));
-        generated(GGBlocks.PARROT_WAXCAP.getId().getPath(), prefix("block/flowers/parrot_waxcap"));
-        generated(GGBlocks.PIXIES_PARASOL.getId().getPath(), prefix("block/flowers/pixies_parasol"));
-        generated(GGBlocks.AMETHYST_DECEIVER.getId().getPath(), prefix("block/flowers/amethyst_deceiver"));
+        generated(GGBlocks.RHODOTUS.getId().getPath(), prefix("block/rhodotus"));
+        generated(GGBlocks.DEATH_CAP.getId().getPath(), prefix("block/death_cap"));
+        generated(GGBlocks.PARROT_WAXCAP.getId().getPath(), prefix("block/parrot_waxcap"));
+        generated(GGBlocks.PIXIES_PARASOL.getId().getPath(), prefix("block/pixies_parasol"));
+        generated(GGBlocks.AMETHYST_DECEIVER.getId().getPath(), prefix("block/amethyst_deceiver"));
     }
 
 

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "gabbysgrove:paperwhite",
+  "step": "vegetal_decoration"
+}

@@ -5,15 +5,24 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.GeodeBlockSettings;
+import net.minecraft.world.level.levelgen.GeodeCrackSettings;
+import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
@@ -21,10 +30,18 @@ import java.util.List;
 
 public class GGConfiguredFeatures {
 
+    //PINK_SAPPHIRE GEODE//
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PINK_SAPPHIRE_GEODE_KEY = registerKey("pink_sapphire_geode");
+
+
+
     //TREES//
     public static final ResourceKey<ConfiguredFeature<?, ?>> CHROMATIC_KEY = registerKey("chromatic_tree");
 
     //FLOWERS//
+    //   public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWERS_OVERWORLD = registerKey("gg_flowers_overworld");
+
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLEEDING_HEARTS = registerKey("bleeding_hearts");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HIBISCUS = registerKey("hibiscus");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PRICKLY_PEAR_CACTUS = registerKey("prickly_pear_cactus");
@@ -49,161 +66,167 @@ public class GGConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_DECEIVER = registerKey("amethyst_deceiver");
 
     //FLOWERS//
-    public static final RandomPatchConfiguration BLEEDING_HEARTS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.BLEEDING_HEARTS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration HIBISCUS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.HIBISCUS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration PRICKLY_PEAR_CACTUS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.PRICKLY_PEAR_CACTUS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration GREEN_LACE_PRIMROSE_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.GREEN_LACE_PRIMROSE.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration GREEN_GAMBLER_HELLEBORUS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.GREEN_GAMBLER_HELLEBORUS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration TURQUOISE_IXIA_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.TURQUOISE_IXIA.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration BLUE_CHICORY_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.BLUE_CHICORY.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration BLUE_SAGE_SALVIA_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.BLUE_SAGE_SALVIA.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration VERBENA_LANAI_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.VERBENA_LANAI.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration SNAPDRAGON_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.SNAPDRAGON.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration GERBERA_DAISY_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.GERBERA_DAISY.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration MOONFLOWER_CACTUS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.MOONFLOWER_CACTUS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration WHITE_SAGE_SALVIA_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.WHITE_SAGE_SALVIA.get().defaultBlockState()))),
-
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-    public static final RandomPatchConfiguration ANGEL_WINGS_SENECIO_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.SNAPDRAGON.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration PENNY_BLACK_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.SNAPDRAGON.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration CYMBIDIUM_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.CYMBIDIUM.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration RHODOTUS_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.RHODOTUS.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration DEATH_CAP_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.DEATH_CAP.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration PARROT_WAX_CAP_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.PARROT_WAXCAP.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration PIXIES_PARASOL_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.PIXIES_PARASOL.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
-
-    public static final RandomPatchConfiguration AMETHYST_DECEIVER_KEY = (new RandomPatchConfiguration(32, 7, 7,
-            PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
-                            new NoiseProvider(2345L, new NormalNoise.NoiseParameters(0, 1.0D), 0.020833334F, List.of(
-                                    GGBlocks.AMETHYST_DECEIVER.get().defaultBlockState()))),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
 
+        register(context, PINK_SAPPHIRE_GEODE_KEY, Feature.GEODE,
+                new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
+                        BlockStateProvider.simple(GGBlocks.PINK_SAPPHIRE_BLOCK.get()),
+                        BlockStateProvider.simple(GGBlocks.BUDDING_PINK_SAPPHIRE_BLOCK.get()),
+                        BlockStateProvider.simple(Blocks.CALCITE),
+                        BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+
+                        List.of( GGBlocks.SMALL_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
+                                GGBlocks.MEDIUM_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
+                                GGBlocks.LARGE_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
+                                GGBlocks.PINK_SAPPHIRE_CLUSTER.get().defaultBlockState()),
+
+                        BlockTags.FEATURES_CANNOT_REPLACE ,
+                        BlockTags.GEODE_INVALID_BLOCKS),
+
+                        new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
+                        new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D,
+                        true, UniformInt.of(4, 6),
+                        UniformInt.of(3, 4), UniformInt.of(1, 2),
+                        -16, 16, 0.05D, 1));
+
+
         context.register(CHROMATIC_KEY, new ConfiguredFeature<>(Feature.TREE, GGTreeConfigurations.CHROMATIC_KEY));
 
 //FLOWERS//
-            context.register(BLEEDING_HEARTS, new ConfiguredFeature<>(Feature.FLOWER, BLEEDING_HEARTS_KEY));
-            context.register(HIBISCUS, new ConfiguredFeature<>(Feature.FLOWER, HIBISCUS_KEY));
-            context.register(PRICKLY_PEAR_CACTUS, new ConfiguredFeature<>(Feature.FLOWER, PRICKLY_PEAR_CACTUS_KEY));
-            context.register(GREEN_LACE_PRIMROSE, new ConfiguredFeature<>(Feature.FLOWER, GREEN_LACE_PRIMROSE_KEY));
-            context.register(GREEN_GAMBLER_HELLEBORUS, new ConfiguredFeature<>(Feature.FLOWER, GREEN_GAMBLER_HELLEBORUS_KEY));
-            context.register(TURQUOISE_IXIA, new ConfiguredFeature<>(Feature.FLOWER, TURQUOISE_IXIA_KEY));
-            context.register(BLUE_CHICORY, new ConfiguredFeature<>(Feature.FLOWER, BLUE_CHICORY_KEY));
-            context.register(BLUE_SAGE_SALVIA, new ConfiguredFeature<>(Feature.FLOWER, BLUE_SAGE_SALVIA_KEY));
-            context.register(VERBENA_LANAI, new ConfiguredFeature<>(Feature.FLOWER, VERBENA_LANAI_KEY));
-            context.register(SNAPDRAGON, new ConfiguredFeature<>(Feature.FLOWER, SNAPDRAGON_KEY));
-            context.register(GERBERA_DAISY, new ConfiguredFeature<>(Feature.FLOWER, GERBERA_DAISY_KEY));
-            context.register(MOONFLOWER_CACTUS, new ConfiguredFeature<>(Feature.FLOWER, MOONFLOWER_CACTUS_KEY));
-            context.register(WHITE_SAGE_SALVIA, new ConfiguredFeature<>(Feature.FLOWER, WHITE_SAGE_SALVIA_KEY));
-            context.register(ANGEL_WINGS_SENECIO, new ConfiguredFeature<>(Feature.FLOWER, ANGEL_WINGS_SENECIO_KEY));
-            context.register(PENNY_BLACK, new ConfiguredFeature<>(Feature.FLOWER, PENNY_BLACK_KEY));
-            context.register(CYMBIDIUM, new ConfiguredFeature<>(Feature.FLOWER, CYMBIDIUM_KEY));
+        register(context, BLEEDING_HEARTS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.BLEEDING_HEARTS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
 
-            context.register(RHODOTUS, new ConfiguredFeature<>(Feature.FLOWER, RHODOTUS_KEY));
-            context.register(DEATH_CAP, new ConfiguredFeature<>(Feature.FLOWER, DEATH_CAP_KEY));
-            context.register(PARROT_WAXCAP, new ConfiguredFeature<>(Feature.FLOWER, PARROT_WAX_CAP_KEY));
-            context.register(PIXIES_PARASOL, new ConfiguredFeature<>(Feature.FLOWER, PIXIES_PARASOL_KEY));
-            context.register(AMETHYST_DECEIVER, new ConfiguredFeature<>(Feature.FLOWER, AMETHYST_DECEIVER_KEY));
+        register(context, HIBISCUS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.HIBISCUS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
 
+        register(context, PRICKLY_PEAR_CACTUS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.PRICKLY_PEAR_CACTUS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.SAND,Blocks.RED_SAND)));
+
+        register(context, GREEN_LACE_PRIMROSE, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.GREEN_LACE_PRIMROSE.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, GREEN_GAMBLER_HELLEBORUS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.GREEN_GAMBLER_HELLEBORUS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, TURQUOISE_IXIA, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.TURQUOISE_IXIA.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, BLUE_CHICORY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.BLUE_CHICORY.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, BLUE_SAGE_SALVIA, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.BLUE_SAGE_SALVIA.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, VERBENA_LANAI, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.VERBENA_LANAI.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, SNAPDRAGON, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.SNAPDRAGON.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, GERBERA_DAISY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.GERBERA_DAISY.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, MOONFLOWER_CACTUS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.MOONFLOWER_CACTUS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.SAND, Blocks.RED_SAND)));
+
+        register(context, WHITE_SAGE_SALVIA, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.WHITE_SAGE_SALVIA.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, ANGEL_WINGS_SENECIO, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.ANGEL_WINGS_SENECIO.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, PENNY_BLACK, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.PENNY_BLACK.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, CYMBIDIUM, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.CYMBIDIUM.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, RHODOTUS, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.RHODOTUS.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, DEATH_CAP, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.DEATH_CAP.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, PARROT_WAXCAP, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.PARROT_WAXCAP.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, PIXIES_PARASOL, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.PIXIES_PARASOL.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, AMETHYST_DECEIVER, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.AMETHYST_DECEIVER.get()
+                                .defaultBlockState())
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+           //       context.register(FLOWERS_OVERWORLD, new ConfiguredFeature<>(Feature.FLOWER, FLOWERS_CONFIG_KEY));
+
+    }
+
+    private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
+        return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
@@ -214,6 +237,8 @@ public class GGConfiguredFeatures {
                                                                                           ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
+
+
 
 
 }

@@ -64,6 +64,60 @@ public class GGLootTableProvider extends BlockLootSubProvider {
         add(GGBlocks.PINK_SAPPHIRE_CLUSTER.get(),
                 block -> createMultipleOreDrops(GGBlocks.PINK_SAPPHIRE_CLUSTER.get(), GGItems.PINK_SAPPHIRE_SHARDS.get(), 2, 5));
 
+        //FLOWERS//
+        dropSelf(GGBlocks.BLEEDING_HEARTS.get());
+        dropSelf(GGBlocks.HIBISCUS.get());
+        dropSelf(GGBlocks.PRICKLY_PEAR_CACTUS.get());
+        dropSelf(GGBlocks.GREEN_LACE_PRIMROSE.get());
+        dropSelf(GGBlocks.GREEN_GAMBLER_HELLEBORUS.get());
+        dropSelf(GGBlocks.TURQUOISE_IXIA.get());
+        dropSelf(GGBlocks.BLUE_CHICORY.get());
+        dropSelf(GGBlocks.BLUE_SAGE_SALVIA.get());
+        dropSelf(GGBlocks.VERBENA_LANAI.get());
+        dropSelf(GGBlocks.SNAPDRAGON.get());
+        dropSelf(GGBlocks.GERBERA_DAISY.get());
+        dropSelf(GGBlocks.MOONFLOWER_CACTUS.get());
+        dropSelf(GGBlocks.WHITE_SAGE_SALVIA.get());
+        dropSelf(GGBlocks.ANGEL_WINGS_SENECIO.get());
+        dropSelf(GGBlocks.PENNY_BLACK.get());
+        dropSelf(GGBlocks.CYMBIDIUM.get());
+
+        dropSelf(GGBlocks.RHODOTUS.get());
+        dropSelf(GGBlocks.DEATH_CAP.get());
+        dropSelf(GGBlocks.PARROT_WAXCAP.get());
+        dropSelf(GGBlocks.PIXIES_PARASOL.get());
+        dropSelf(GGBlocks.AMETHYST_DECEIVER.get());
+
+        //POTTED FLOWERS//
+
+        dropPottedContents(GGBlocks.BLEEDING_HEARTS_POTTED.get());
+        dropPottedContents(GGBlocks.HIBISCUS_POTTED.get());
+        dropPottedContents(GGBlocks.PRICKLY_PEAR_CACTUS_POTTED.get());
+        dropPottedContents(GGBlocks.GREEN_LACE_PRIMROSE_POTTED.get());
+        dropPottedContents(GGBlocks.GREEN_GAMBLER_HELLEBORUS_POTTED.get());
+        dropPottedContents(GGBlocks.TURQUOISE_IXIA_POTTED.get());
+        dropPottedContents(GGBlocks.BLUE_CHICORY_POTTED.get());
+        dropPottedContents(GGBlocks.BLUE_SAGE_SALVIA_POTTED.get());
+        dropPottedContents(GGBlocks.VERBENA_LANAI_POTTED.get());
+        dropPottedContents(GGBlocks.SNAPDRAGON_POTTED.get());
+        dropPottedContents(GGBlocks.GERBERA_DAISY_POTTED.get());
+        dropPottedContents(GGBlocks.MOONFLOWER_CACTUS_POTTED.get());
+        dropPottedContents(GGBlocks.WHITE_SAGE_SALVIA_POTTED.get());
+        dropPottedContents(GGBlocks.ANGEL_WINGS_SENECIO_POTTED.get());
+        dropPottedContents(GGBlocks.PENNY_BLACK_POTTED.get());
+        dropPottedContents(GGBlocks.CYMBIDIUM_POTTED.get());
+
+        dropPottedContents(GGBlocks.RHODOTUS_POTTED.get());
+        dropPottedContents(GGBlocks.DEATH_CAP_POTTED.get());
+        dropPottedContents(GGBlocks.PARROT_WAXCAP_POTTED.get());
+        dropPottedContents(GGBlocks.PIXIES_PARASOL_POTTED.get());
+        dropPottedContents(GGBlocks.AMETHYST_DECEIVER_POTTED.get());
+
+        //SAPLING POTTED//
+        dropPottedContents(GGBlocks.CHROMATIC_SAPLING_POTTED.get());
+
+
+
 
     }
 

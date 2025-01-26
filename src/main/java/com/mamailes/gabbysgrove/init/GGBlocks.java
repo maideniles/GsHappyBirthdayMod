@@ -132,7 +132,7 @@ public class GGBlocks {
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).lightLevel((p_152629_) -> {return 1;})));
 
     //FLOWERS//
-    //FLOWERS//
+
     public static final DeferredBlock<Block> BLEEDING_HEARTS = registerBlock("bleeding_hearts",
             () -> new GGFlowerBlock(BlockBehaviour.Properties.of().strength(2.0F).noOcclusion().noCollission().instabreak().sound(SoundType.CROP)));
 

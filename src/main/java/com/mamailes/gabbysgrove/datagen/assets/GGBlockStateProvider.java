@@ -133,13 +133,13 @@ blockWithItem(GGBlocks.CHROMATIC_PLANKS);
         simpleBlock(GGBlocks.HIBISCUS_POTTED.get(), models().withExistingParent(GGBlocks.HIBISCUS_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.HIBISCUS.get())));
 
-        simpleBlock(GGBlocks.PRICKLY_PEAR_CACTUS.get(), models().withExistingParent(GGBlocks.PRICKLY_PEAR_CACTUS_POTTED.getId().getPath(),
+        simpleBlock(GGBlocks.PRICKLY_PEAR_CACTUS_POTTED.get(), models().withExistingParent(GGBlocks.PRICKLY_PEAR_CACTUS_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.PRICKLY_PEAR_CACTUS.get())));
 
         simpleBlock(GGBlocks.GREEN_LACE_PRIMROSE_POTTED.get(), models().withExistingParent(GGBlocks.GREEN_LACE_PRIMROSE_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.GREEN_LACE_PRIMROSE.get())));
 
-        simpleBlock(GGBlocks.GREEN_GAMBLER_HELLEBORUS.get(), models().withExistingParent(GGBlocks.GREEN_GAMBLER_HELLEBORUS_POTTED.getId().getPath(),
+        simpleBlock(GGBlocks.GREEN_GAMBLER_HELLEBORUS_POTTED.get(), models().withExistingParent(GGBlocks.GREEN_GAMBLER_HELLEBORUS_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.GREEN_GAMBLER_HELLEBORUS.get())));
 
         simpleBlock(GGBlocks.TURQUOISE_IXIA_POTTED.get(), models().withExistingParent(GGBlocks.TURQUOISE_IXIA_POTTED.getId().getPath(),
@@ -158,7 +158,7 @@ blockWithItem(GGBlocks.CHROMATIC_PLANKS);
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.SNAPDRAGON.get())));
 
         simpleBlock(GGBlocks.GERBERA_DAISY_POTTED.get(), models().withExistingParent(blockTexture(GGBlocks.GERBERA_DAISY_POTTED.get()).getPath(),
-                "block/flower_pot_cross").renderType("cutout").texture("plant",blockTexture(GGBlocks.GERBERA_DAISY_POTTED.get())));
+                "block/flower_pot_cross").renderType("cutout").texture("plant",blockTexture(GGBlocks.GERBERA_DAISY.get())));
 
         simpleBlock(GGBlocks.MOONFLOWER_CACTUS_POTTED.get(), models().withExistingParent(GGBlocks.MOONFLOWER_CACTUS_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.MOONFLOWER_CACTUS.get())));

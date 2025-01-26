@@ -6,6 +6,7 @@ import com.mamailes.gabbysgrove.world.GGRegion1;
 import com.mamailes.gabbysgrove.world.GGRegion2;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -58,13 +59,15 @@ public class GabbysGrove
     public GabbysGrove(IEventBus modEventBus, ModContainer modContainer)
     {
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+
 
         GGParticles.register(modEventBus);
         GGBlocks.register(modEventBus);
         GGItems.register(modEventBus);
         GGCreativeModeTabs.register(modEventBus);
         GGEntities.register(modEventBus);
+
+        modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (GabbysGrove) to respond directly to events.
@@ -81,6 +84,35 @@ public class GabbysGrove
     {
         event.enqueueWork(() ->
                 {
+
+                    event.enqueueWork(() -> {
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.BLEEDING_HEARTS.getId(), GGBlocks.BLEEDING_HEARTS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.HIBISCUS.getId(), GGBlocks.HIBISCUS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.PRICKLY_PEAR_CACTUS.getId(), GGBlocks.PRICKLY_PEAR_CACTUS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.GREEN_LACE_PRIMROSE.getId(), GGBlocks.GREEN_LACE_PRIMROSE_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.GREEN_GAMBLER_HELLEBORUS.getId(), GGBlocks.GREEN_GAMBLER_HELLEBORUS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.TURQUOISE_IXIA.getId(), GGBlocks.TURQUOISE_IXIA_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.BLUE_CHICORY.getId(), GGBlocks.BLUE_CHICORY_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.BLUE_SAGE_SALVIA.getId(), GGBlocks.BLUE_SAGE_SALVIA_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.VERBENA_LANAI.getId(), GGBlocks.VERBENA_LANAI_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.SNAPDRAGON.getId(), GGBlocks.SNAPDRAGON_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.GERBERA_DAISY.getId(), GGBlocks.GERBERA_DAISY_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.MOONFLOWER_CACTUS.getId(), GGBlocks.MOONFLOWER_CACTUS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.WHITE_SAGE_SALVIA.getId(), GGBlocks.WHITE_SAGE_SALVIA_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.ANGEL_WINGS_SENECIO.getId(), GGBlocks.ANGEL_WINGS_SENECIO_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.PENNY_BLACK.getId(), GGBlocks.PENNY_BLACK_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.CYMBIDIUM.getId(), GGBlocks.CYMBIDIUM_POTTED);
+
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.RHODOTUS.getId(), GGBlocks.RHODOTUS_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.DEATH_CAP.getId(), GGBlocks.DEATH_CAP_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.PARROT_WAXCAP.getId(), GGBlocks.PARROT_WAXCAP_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.PIXIES_PARASOL.getId(), GGBlocks.PIXIES_PARASOL_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.AMETHYST_DECEIVER.getId(), GGBlocks.AMETHYST_DECEIVER_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.CHROMATIC_SAPLING.getId(), GGBlocks.CHROMATIC_SAPLING_POTTED);
+
+
+
+                    });
 
         // Weights are kept intentionally low as we add minimal biomes
         Regions.register(new GGRegion1(ResourceLocation.fromNamespaceAndPath(MODID, "overworld_1"), 2));

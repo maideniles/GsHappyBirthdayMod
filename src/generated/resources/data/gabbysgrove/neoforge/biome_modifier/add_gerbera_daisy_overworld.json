@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "gabbysgrove:gerbera_daisy",
+  "step": "vegetal_decoration"
+}

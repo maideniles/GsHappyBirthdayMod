@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "gabbysgrove:pink_sapphire_geode_placement",
+  "step": "vegetal_decoration"
+}

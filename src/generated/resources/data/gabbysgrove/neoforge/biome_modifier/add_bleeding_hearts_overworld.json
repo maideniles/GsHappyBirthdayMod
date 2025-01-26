@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "gabbysgrove:bleeding_hearts",
+  "step": "vegetal_decoration"
+}
