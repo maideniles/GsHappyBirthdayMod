@@ -2,7 +2,6 @@ package com.mamailes.gabbysgrove.init;
 
 import com.mamailes.gabbysgrove.GabbysGrove;
 import com.mamailes.gabbysgrove.item.GGHammerItem;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -36,9 +35,8 @@ public class GGItems {
             () -> new GGHammerItem(GGToolTiers.PINK_SAPPHIRE, new Item.Properties()
                     .attributes(PickaxeItem.createAttributes(GGToolTiers.PINK_SAPPHIRE, 7F, -3.5f))));
 
-    //PLACEHOLDER--FIX COLORS//
-//    public static final DeferredItem<Item> PLACEHOLDER_MOTH_SPAWN_EGG = ITEMS.register("placeholder_moth_spawn_egg",
-//            () -> new DeferredSpawnEggItem(GGEntities.PLACEHOLDER_MOTH, 38656, 16711697, (new Item.Properties())));
+    public static final DeferredItem<Item> MOTH_SPAWN_EGG = ITEMS.register("moth_spawn_egg",
+            () -> new DeferredSpawnEggItem(GGEntities.MOTH, 38656, 16711697, (new Item.Properties())));
 
 
     public static void register(IEventBus eventBus) {
