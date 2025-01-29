@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "chromatic_planks",
+  "ingredients": [
+    {
+      "item": "gabbysgrove:chromatic_planks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gabbysgrove:chromatic_button"
+  }
+}

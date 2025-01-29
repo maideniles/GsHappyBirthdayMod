@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "gabbysgrove:gabbys_grove",
+  "features": "gabbysgrove:chromatic_placement",
+  "step": "vegetal_decoration"
+}

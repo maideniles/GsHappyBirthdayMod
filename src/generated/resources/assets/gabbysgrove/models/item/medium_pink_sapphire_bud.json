@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gabbysgrove:block/medium_pink_sapphire_bud"
+  }
+}

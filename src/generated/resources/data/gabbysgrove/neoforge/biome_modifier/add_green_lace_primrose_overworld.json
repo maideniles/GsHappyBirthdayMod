@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "gabbysgrove:green_lace_primrose",
+  "step": "vegetal_decoration"
+}

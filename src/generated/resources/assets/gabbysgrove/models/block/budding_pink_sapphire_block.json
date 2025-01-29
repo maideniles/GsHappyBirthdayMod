@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gabbysgrove:block/budding_pink_sapphire_block"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "gabbysgrove:item/pink_sapphire_sword"
+  }
+}

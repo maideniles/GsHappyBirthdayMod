@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "gabbysgrove:block/chromatic_planks"
+  }
+}

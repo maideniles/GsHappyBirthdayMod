@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "gabbysgrove:block/chromatic_planks",
+    "side": "gabbysgrove:block/chromatic_planks",
+    "top": "gabbysgrove:block/chromatic_planks"
+  }
+}
