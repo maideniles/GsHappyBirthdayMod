@@ -1,11 +1,22 @@
 package com.mamailes.gabbysgrove.entity;
 
 import com.mamailes.gabbysgrove.init.GGEntities;
+import com.mamailes.gabbysgrove.init.GGEntityDataSerializers;
+import com.mamailes.gabbysgrove.init.GGMothVariants;
 import com.mamailes.gabbysgrove.init.GGTags;
 import com.mamailes.gabbysgrove.mixin.LivingEntityAccessor;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -16,10 +27,12 @@ import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
@@ -31,8 +44,12 @@ import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal {
+import java.util.Objects;
+import java.util.Optional;
+
+public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, VariantHolder<Holder<MothVariant>> {
     public static final int GROUND_CLEARENCE_THRESHOLD = 3;
+    private static final EntityDataAccessor<Holder<MothVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Moth.class, GGEntityDataSerializers.MOTH_VARIANT.get());
     private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenPlay("animation.moth.idle");
     private static final RawAnimation WALK_ANIM = RawAnimation.begin().thenPlay("animation.moth.walk");
     private static final RawAnimation FLY_ANIM = RawAnimation.begin().thenPlay("animation.moth.fly");
@@ -60,6 +77,37 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FLYING_SPEED, 0.3D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        RegistryAccess registryaccess = this.registryAccess();
+        Registry<MothVariant> registry = registryaccess.registryOrThrow(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY);
+        Objects.requireNonNull(registry);
+        builder.define(DATA_VARIANT_ID, registry.getHolder(GGMothVariants.DEFAULT).or(registry::getAny).orElseThrow());
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        this.getVariant().unwrapKey().ifPresent((variantResourceKey) -> compound.putString("variant", variantResourceKey.location().toString()));
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        Optional.ofNullable(ResourceLocation.tryParse(compound.getString("variant")))
+                .map((variantLocation) -> ResourceKey.create(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY, variantLocation))
+                .flatMap((variantResourceKey) -> this.registryAccess().registryOrThrow(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY).getHolder(variantResourceKey))
+                .ifPresent(this::setVariant);
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        Holder<MothVariant> spawnVariant = GGMothVariants.getSpawnVariant(this.registryAccess());
+        this.setVariant(spawnVariant);
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
     @Override
@@ -247,6 +295,7 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal {
             }
             this.setOrderedToSit(false);
             this.setInSittingPose(false);
+            this.setOrderedToSit(false);
             return InteractionResult.sidedSuccess(level().isClientSide);
         }
 
@@ -292,10 +341,41 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal {
         return itemStack.is(GGTags.Items.MOTH_FOOD);
     }
 
+    @Override
+    public boolean canMate(Animal otherAnimal) {
+        if (otherAnimal == this) {
+            return false;
+        } else if (!this.isTame()) {
+            return false;
+        } else if (otherAnimal instanceof Moth otherMoth) {
+            if (!otherMoth.isTame()) {
+                return false;
+            } else {
+                return !otherMoth.isInSittingPose() && this.isInLove() && otherMoth.isInLove();
+            }
+        } else {
+            return false;
+        }
+    }
+
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        return GGEntities.MOTH.get().create(serverLevel);
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob otherParent) {
+        Moth offspring = GGEntities.MOTH.get().create(serverLevel);
+        if (offspring != null && otherParent instanceof Moth otherMoth) {
+            if (this.random.nextBoolean()) {
+                offspring.setVariant(this.getVariant());
+            } else {
+                offspring.setVariant(otherMoth.getVariant());
+            }
+
+            if (this.isTame()) {
+                offspring.setOwnerUUID(this.getOwnerUUID());
+                offspring.setTame(true, true);
+            }
+        }
+
+        return offspring;
     }
 
     @Override
@@ -313,5 +393,20 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.animatableInstanceCache;
+    }
+
+    public ResourceLocation getTexture() {
+        MothVariant variant = this.getVariant().value();
+        return variant.texture();
+    }
+
+    @Override
+    public void setVariant(Holder<MothVariant> mothVariantHolder) {
+        this.entityData.set(DATA_VARIANT_ID, mothVariantHolder);
+    }
+
+    @Override
+    public Holder<MothVariant> getVariant() {
+        return this.entityData.get(DATA_VARIANT_ID);
     }
 }

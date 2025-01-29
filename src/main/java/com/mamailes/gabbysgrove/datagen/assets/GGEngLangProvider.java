@@ -68,6 +68,7 @@ public class GGEngLangProvider extends LanguageProvider {
 
         //MOTH//
         this.addEntityType(GGEntities.MOTH,"Moth");
+        this.addItem(GGItems.MOTH_SPAWN_EGG, "Moth Spawn Egg");
 
     }
 
