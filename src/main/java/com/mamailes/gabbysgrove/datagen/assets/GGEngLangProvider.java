@@ -3,6 +3,7 @@ package com.mamailes.gabbysgrove.datagen.assets;
 
 import com.mamailes.gabbysgrove.GabbysGrove;
 import com.mamailes.gabbysgrove.init.GGBlocks;
+import com.mamailes.gabbysgrove.init.GGEntities;
 import com.mamailes.gabbysgrove.init.GGItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -66,7 +67,8 @@ public class GGEngLangProvider extends LanguageProvider {
     //ENTITIES//
 
         //MOTH//
-      //  addEntityType(GGEntities.MOTH_PLACEHOLDER,"Moth PlaceHolder");
+        this.addEntityType(GGEntities.MOTH,"Moth");
+        this.addItem(GGItems.MOTH_SPAWN_EGG, "Moth Spawn Egg");
 
     }
 

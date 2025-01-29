@@ -93,6 +93,8 @@ public class GGItemModelProvider extends ItemModelProvider {
         generated(GGBlocks.PARROT_WAXCAP.getId().getPath(), prefix("block/parrot_waxcap"));
         generated(GGBlocks.PIXIES_PARASOL.getId().getPath(), prefix("block/pixies_parasol"));
         generated(GGBlocks.AMETHYST_DECEIVER.getId().getPath(), prefix("block/amethyst_deceiver"));
+
+        this.spawnEggItem(GGItems.MOTH_SPAWN_EGG.get());
     }
 
 

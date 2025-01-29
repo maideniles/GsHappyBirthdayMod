@@ -23,6 +23,7 @@ public class GGTags {
     public static class Items {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         public static final TagKey<Item> CHROMATIC_LOGS = createTag("chromatic_logs");
+        public static final TagKey<Item> MOTH_FOOD = createTag("moth_food");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(GabbysGrove.MODID, name));
