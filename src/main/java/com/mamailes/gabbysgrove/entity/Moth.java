@@ -15,6 +15,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
@@ -32,13 +33,16 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SaddleItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -52,9 +56,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, VariantHolder<Holder<MothVariant>>,Saddleable {
+public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, VariantHolder<Holder<MothVariant>>, Saddleable {
     public static final int GROUND_CLEARENCE_THRESHOLD = 3;
     private static final EntityDataAccessor<Holder<MothVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Moth.class, GGEntityDataSerializers.MOTH_VARIANT.get());
+    private static final EntityDataAccessor<Boolean> DATA_SADDLED = SynchedEntityData.defineId(Moth.class, EntityDataSerializers.BOOLEAN);
     private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenPlay("animation.moth.idle");
     private static final RawAnimation WALK_ANIM = RawAnimation.begin().thenPlay("animation.moth.walk");
     private static final RawAnimation FLY_ANIM = RawAnimation.begin().thenPlay("animation.moth.fly");
@@ -64,12 +69,6 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
 
     private final GroundPathNavigation groundNavigation;
     private final FlyingPathNavigation flyingNavigation;
-
-    private static final EntityDataAccessor<Byte> DATA_ID_FLAGS = SynchedEntityData.defineId(AbstractHorse.class, EntityDataSerializers.BYTE);
-    private static final int FLAG_TAME = 2;
-    private static final int FLAG_SADDLE = 4;
-    private static final int FLAG_BRED = 8;
-    private static final int FLAG_EATING = 16;
 
 
     public Moth(EntityType<? extends Moth> entityType, Level level) {
@@ -102,12 +101,14 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
         Registry<MothVariant> registry = registryaccess.registryOrThrow(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY);
         Objects.requireNonNull(registry);
         builder.define(DATA_VARIANT_ID, registry.getHolder(GGMothVariants.DEFAULT).or(registry::getAny).orElseThrow());
+        builder.define(DATA_SADDLED, false);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         this.getVariant().unwrapKey().ifPresent((variantResourceKey) -> compound.putString("variant", variantResourceKey.location().toString()));
+        compound.putBoolean("Saddled", this.isSaddled());
     }
 
     @Override
@@ -117,6 +118,7 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
                 .map((variantLocation) -> ResourceKey.create(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY, variantLocation))
                 .flatMap((variantResourceKey) -> this.registryAccess().registryOrThrow(GGMothVariants.MOTH_VARIANT_REGISTRY_KEY).getHolder(variantResourceKey))
                 .ifPresent(this::setVariant);
+        this.setSaddled(compound.getBoolean("Saddled"));
     }
 
     @Override
@@ -124,6 +126,14 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
         Holder<MothVariant> spawnVariant = GGMothVariants.getSpawnVariant(this.registryAccess());
         this.setVariant(spawnVariant);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    }
+
+    @Override
+    protected void dropEquipment() {
+        super.dropEquipment();
+        if (this.isSaddled()){
+            this.spawnAtLocation(Items.SADDLE);
+        }
     }
 
     @Override
@@ -260,7 +270,7 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
 
     @Override
     public LivingEntity getControllingPassenger() {
-        return this.getFirstPassenger() instanceof LivingEntity driver ? driver : null;
+        return this.isSaddled() && this.getFirstPassenger() instanceof LivingEntity driver ? driver : null;
     }
 
     @Override
@@ -293,6 +303,24 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
             return InteractionResult.PASS;
         }
 
+        // Equip saddle
+        if (this.isSaddleable() && !isSaddled() && itemInHand.getItem() instanceof SaddleItem) {
+            itemInHand.shrink(1);
+            this.equipSaddle(itemInHand, this.getSoundSource());
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
+
+        // Give back saddle
+        if (this.isSaddled() && itemInHand.is(Tags.Items.TOOLS_SHEAR)) {
+            this.spawnAtLocation(Items.SADDLE);
+            player.playSound(SoundEvents.SHEEP_SHEAR, 1f, 1f);
+            this.setSaddled(false);
+            gameEvent(GameEvent.SHEAR, player);
+            itemInHand.hurtAndBreak(1, player, getSlotForHand(hand));
+
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
+
         // Sit
         if (player.isSecondaryUseActive()){
             if (this.level().isClientSide) {
@@ -304,7 +332,7 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
         }
 
         // Ride
-        if (!this.isFood(itemInHand) && !this.isBaby()) {
+        if (!this.isFood(itemInHand) && this.isSaddled() &&  !this.isBaby()) {
             if (!this.level().isClientSide) {
                 this.doPlayerRide(player);
                 this.navigation.stop();
@@ -435,17 +463,16 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
 
     @Override
     public void equipSaddle(ItemStack itemStack, @Nullable SoundSource soundSource) {
-
+        this.setSaddled(true);
+        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.HORSE_SADDLE, this.getSoundSource(), 1.0F, 1.0F);
     }
 
     @Override
     public boolean isSaddled() {
-        {
-            return this.getFlag(4);
-        }
+        return this.entityData.get(DATA_SADDLED);
     }
 
-    protected boolean getFlag(int flagId) {
-        return (this.entityData.get(DATA_ID_FLAGS) & flagId) != 0;
+    public void setSaddled(boolean saddled) {
+        this.entityData.set(DATA_SADDLED, saddled);
     }
 }
