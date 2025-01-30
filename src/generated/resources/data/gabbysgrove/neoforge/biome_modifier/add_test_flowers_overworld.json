@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "gabbysgrove:gabbys_grove",
+  "features": "gabbysgrove:flowers_overworld_placement",
+  "step": "vegetal_decoration"
+}

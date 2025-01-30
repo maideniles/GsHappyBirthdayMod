@@ -10,11 +10,14 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.List;
 
 public class GGBiomeModifiers {
 
@@ -22,7 +25,9 @@ public class GGBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_PINK_SAPPHIRE_GEODE_OVERWORLD = registerKey("add_pink_sapphire_geode_overworld");
 
-    public static final ResourceKey<BiomeModifier> ADD_TEST_FLOWERS_OVERWORLD = registerKey("add_test_flowers_overworld");
+    public static final ResourceKey<BiomeModifier> ADD_FLOWERS_OVERWORLD = registerKey("add_test_flowers_overworld");
+
+    public static final ResourceKey<BiomeModifier> ADD_CHROMATIC_BUSH = registerKey("add_chromatic_bush");
 
 
     public static final ResourceKey<BiomeModifier> ADD_BLEEDING_HEARTS_OVERWORLD = registerKey("add_bleeding_hearts_overworld");
@@ -42,7 +47,7 @@ public class GGBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_GERBERA_DAISY_OVERWORLD = registerKey("add_gerbera_daisy_overworld");
     public static final ResourceKey<BiomeModifier> ADD_MOONFLOWER_CACTUS_DESERT = registerKey("add_moonflower_cactus_desert");
     public static final ResourceKey<BiomeModifier> ADD_WHITE_SAGE_SALVIA_OVERWORLD = registerKey("add_white_sage_salvia_overworld");
-    public static final ResourceKey<BiomeModifier> ADD_ANGEL_WINGS_SENECIO_OVERWORLD = registerKey("add_angel_wings_senecio_overworld");
+    public static final ResourceKey<BiomeModifier> ADD_STARGAZER_LILY_OVERWORLD = registerKey("add_angel_wings_senecio_overworld");
     public static final ResourceKey<BiomeModifier> ADD_PENNY_BLACK_OVERWORLD = registerKey("add_penny_black_overworld");
     public static final ResourceKey<BiomeModifier> ADD_CYMBIDIUM_OVERWORLD = registerKey("add_cymbidium_overworld");
 
@@ -57,8 +62,8 @@ public class GGBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_OAK_TREES = registerKey("add_oak_trees");
 
 
-  //PLACEHOLDER//
-   // public static final ResourceKey<BiomeModifier> SPAWN_MOTH = registerKey("spawn_moth");
+    //PLACEHOLDER//
+     public static final ResourceKey<BiomeModifier> SPAWN_MOTH = registerKey("spawn_moth");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -79,6 +84,17 @@ public class GGBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.CHROMATIC_PLACEMENT)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ADD_FLOWERS_OVERWORLD, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(GGBiomes.GABBYS_GROVE)),
+                HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.FLOWERS_OVERWORLD_PLACEMENT)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_CHROMATIC_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(GGBiomes.GABBYS_GROVE)),
+                HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.CHROMATIC_BUSH_PLACEMENT)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+
 
         //ADD DESERT/HOT PLANTS//
         context.register(ADD_PRICKLY_PEAR_CACTUS_DESERT, new BiomeModifiers.AddFeaturesBiomeModifier(
@@ -98,7 +114,7 @@ public class GGBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_HIBISCUS_OVERWORLD, new BiomeModifiers.AddFeaturesBiomeModifier(
-               biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.HIBISCUS_PLACEMENT)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
@@ -147,9 +163,9 @@ public class GGBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.WHITE_SAGE_SALVIA_PLACEMENT)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
-        context.register(ADD_ANGEL_WINGS_SENECIO_OVERWORLD, new BiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_STARGAZER_LILY_OVERWORLD, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.ANGEL_WINGS_SENECIO_PLACEMENT)),
+                HolderSet.direct(placedFeatures.getOrThrow(GGPlacedFeatures.STARGAZER_LILY_PLACEMENT)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_PENNY_BLACK_OVERWORLD, new BiomeModifiers.AddFeaturesBiomeModifier(
@@ -252,17 +268,17 @@ public class GGBiomeModifiers {
 
 
         //PLACEHOLDER//
-//        context.register(SPAWN_MOTH,
-//                new BiomeModifiers.AddSpawnsBiomeModifier(
-//                        // The biome(s) to spawn the mobs within
-//                        biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
-//                        // The spawners of the entities to add
-//                        List.of(
-//                                new MobSpawnSettings.SpawnerData(PLACEHOLDERGGEntities.MOTH_PLACEHOLDDER.get(), 10, 1, 1)
-//
-//                        )
-//                )
-//        );
+        context.register(SPAWN_MOTH,
+                new BiomeModifiers.AddSpawnsBiomeModifier(
+                        // The biome(s) to spawn the mobs within
+                        HolderSet.direct(biomes.getOrThrow(GGBiomes.GABBYS_GROVE)),
+                        // The spawners of the entities to add
+                        List.of(
+                                new MobSpawnSettings.SpawnerData(GGEntities.MOTH.get(), 10, 1, 1)
+
+                        )
+                )
+        );
     }
 
 

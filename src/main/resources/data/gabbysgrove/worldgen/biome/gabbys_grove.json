@@ -22,7 +22,7 @@
       "options": {
         "type": "gabbysgrove:lbg_particles"
       },
-      "probability": 0.118093334
+      "probability": 0.002
     },
 
     "sky_color": 12638463,
@@ -98,6 +98,20 @@
     "ambient": [
       {
         "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      },
+
+      {
+        "type": "minecraft:frog",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      },
+
+      {
+        "type": "minecraft:parrot",
         "maxCount": 8,
         "minCount": 8,
         "weight": 10
@@ -196,6 +210,12 @@
     "underground_water_creature": [
       {
         "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:axolotl",
         "maxCount": 6,
         "minCount": 4,
         "weight": 10

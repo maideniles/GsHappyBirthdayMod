@@ -2,6 +2,7 @@ package com.mamailes.gabbysgrove.datagen;
 
 import com.mamailes.gabbysgrove.GabbysGrove;
 import com.mamailes.gabbysgrove.datagen.assets.GGBlockStateProvider;
+import com.mamailes.gabbysgrove.datagen.assets.GGEngLangProvider;
 import com.mamailes.gabbysgrove.datagen.assets.GGItemModelProvider;
 import com.mamailes.gabbysgrove.datagen.loot.GGLootTableProvider;
 import com.mamailes.gabbysgrove.datagen.recipe.GGRecipeProvider;
@@ -41,7 +42,7 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new GGBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new GGItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeServer(), new GGWorldGenProvider(packOutput, lookupProvider));
-
+        generator.addProvider(true, new GGEngLangProvider(packOutput));
 
        GGBlockTagProvider blockTagGenerator = generator.addProvider(event.includeServer(),
                 new GGBlockTagProvider(packOutput, lookupProvider, existingFileHelper));

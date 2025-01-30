@@ -7,11 +7,16 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 public class MothGeoModel extends DefaultedEntityGeoModel<Moth> {
     public MothGeoModel() {
-        super(GGEntities.MOTH.getId());
+        super(GGEntities.MOTH.getId(),true);
     }
 
     @Override
     public ResourceLocation getTextureResource(Moth animatable) {
         return animatable.getTexture();
     }
+
+
+
+
+
 }

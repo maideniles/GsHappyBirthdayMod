@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "gabbysgrove:gabbys_grove",
+  "spawners": {
+    "type": "gabbysgrove:moth",
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 10
+  }
+}

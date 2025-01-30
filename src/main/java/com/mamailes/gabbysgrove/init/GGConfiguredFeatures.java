@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GeodeBlockSettings;
 import net.minecraft.world.level.levelgen.GeodeCrackSettings;
 import net.minecraft.world.level.levelgen.GeodeLayerSettings;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -30,16 +29,17 @@ import java.util.List;
 
 public class GGConfiguredFeatures {
 
+
     //PINK_SAPPHIRE GEODE//
     public static final ResourceKey<ConfiguredFeature<?, ?>> PINK_SAPPHIRE_GEODE_KEY = registerKey("pink_sapphire_geode");
-
 
 
     //TREES//
     public static final ResourceKey<ConfiguredFeature<?, ?>> CHROMATIC_KEY = registerKey("chromatic_tree");
 
     //FLOWERS//
-    //   public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWERS_OVERWORLD = registerKey("gg_flowers_overworld");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWERS_OVERWORLD = registerKey("gg_flowers_overworld");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHROMATIC_BUSH = registerKey("chromatic_bush");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLEEDING_HEARTS = registerKey("bleeding_hearts");
@@ -55,7 +55,7 @@ public class GGConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GERBERA_DAISY = registerKey("gerbera_daisy");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MOONFLOWER_CACTUS = registerKey("moonflower_cactus");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_SAGE_SALVIA = registerKey("white_sage_salvia");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ANGEL_WINGS_SENECIO = registerKey("angel_wings_senecio");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STARGAZER_LILY = registerKey("stargazer_lily");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PENNY_BLACK = registerKey("paperwhite");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CYMBIDIUM = registerKey("white_poinsettia");
 
@@ -65,10 +65,12 @@ public class GGConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PIXIES_PARASOL = registerKey("pixies_parasol");
     public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_DECEIVER = registerKey("amethyst_deceiver");
 
+
     //FLOWERS//
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
+
 
         register(context, PINK_SAPPHIRE_GEODE_KEY, Feature.GEODE,
                 new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
@@ -77,12 +79,12 @@ public class GGConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.CALCITE),
                         BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
 
-                        List.of( GGBlocks.SMALL_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
+                        List.of(GGBlocks.SMALL_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
                                 GGBlocks.MEDIUM_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
                                 GGBlocks.LARGE_PINK_SAPPHIRE_BUD.get().defaultBlockState(),
                                 GGBlocks.PINK_SAPPHIRE_CLUSTER.get().defaultBlockState()),
 
-                        BlockTags.FEATURES_CANNOT_REPLACE ,
+                        BlockTags.FEATURES_CANNOT_REPLACE,
                         BlockTags.GEODE_INVALID_BLOCKS),
 
                         new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
@@ -111,7 +113,7 @@ public class GGConfiguredFeatures {
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.PRICKLY_PEAR_CACTUS.get()
                                 .defaultBlockState())
-                        ), List.of(Blocks.SAND,Blocks.RED_SAND)));
+                        ), List.of(Blocks.SAND, Blocks.RED_SAND)));
 
         register(context, GREEN_LACE_PRIMROSE, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
@@ -173,9 +175,9 @@ public class GGConfiguredFeatures {
                                 .defaultBlockState())
                         ), List.of(Blocks.GRASS_BLOCK)));
 
-        register(context, ANGEL_WINGS_SENECIO, Feature.RANDOM_PATCH,
+        register(context, STARGAZER_LILY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.ANGEL_WINGS_SENECIO.get()
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(GGBlocks.STARGAZER_LILY.get()
                                 .defaultBlockState())
                         ), List.of(Blocks.GRASS_BLOCK)));
 
@@ -221,10 +223,41 @@ public class GGConfiguredFeatures {
                                 .defaultBlockState())
                         ), List.of(Blocks.GRASS_BLOCK)));
 
-           //       context.register(FLOWERS_OVERWORLD, new ConfiguredFeature<>(Feature.FLOWER, FLOWERS_CONFIG_KEY));
 
+        FeatureUtils.register(
+                context, FLOWERS_OVERWORLD, Feature.FLOWER,
+                new RandomPatchConfiguration(96, 6, 2,
+                        PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new NoiseProvider(2345L,
+                                                new NormalNoise.NoiseParameters(0, 1.0),
+                                                0.020833334F,
+                                                List.of(
+                                                        GGBlocks.BLEEDING_HEARTS.get().defaultBlockState(),
+                                                        GGBlocks.HIBISCUS.get().defaultBlockState(),
+                                                        GGBlocks.GREEN_LACE_PRIMROSE.get().defaultBlockState(),
+                                                        GGBlocks.GREEN_GAMBLER_HELLEBORUS.get().defaultBlockState(),
+                                                        GGBlocks.TURQUOISE_IXIA.get().defaultBlockState(),
+                                                        GGBlocks.BLUE_CHICORY.get().defaultBlockState(),
+                                                        GGBlocks.BLUE_SAGE_SALVIA.get().defaultBlockState(),
+                                                        GGBlocks.VERBENA_LANAI.get().defaultBlockState(),
+                                                        GGBlocks.SNAPDRAGON.get().defaultBlockState(),
+                                                        GGBlocks.GERBERA_DAISY.get().defaultBlockState(),
+                                                        GGBlocks.WHITE_SAGE_SALVIA.get().defaultBlockState(),
+                                                        GGBlocks.STARGAZER_LILY.get().defaultBlockState(),
+                                                        GGBlocks.PENNY_BLACK.get().defaultBlockState(),
+                                                        GGBlocks.CYMBIDIUM.get().defaultBlockState()
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+
+
+        context.register(CHROMATIC_BUSH,new ConfiguredFeature<>(Feature.TREE,GGTreeConfigurations.CHROMATIC_BUSH_KEY));
     }
-
     private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
         return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
     }

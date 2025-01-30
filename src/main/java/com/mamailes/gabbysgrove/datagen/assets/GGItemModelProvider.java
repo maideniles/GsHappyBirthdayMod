@@ -38,6 +38,7 @@ public class GGItemModelProvider extends ItemModelProvider {
 
 //PINK SAPPHIRE TOOLS//
         handheldItem(GGItems.PINK_SAPPHIRE_AXE.get());
+        handheldItem(GGItems.PINK_SAPPHIRE_PICKAXE.get());
         handheldItem(GGItems.PINK_SAPPHIRE_HOE.get());
         handheldItem(GGItems.PINK_SAPPHIRE_SWORD.get());
         handheldItem(GGItems.PINK_SAPPHIRE_SHOVEL.get());
@@ -47,6 +48,8 @@ public class GGItemModelProvider extends ItemModelProvider {
 
     //LEAVES, SAPLING//
         toBlockModel(GGBlocks.FLOWERING_LEAVES.get(), prefix("block/flowering_leaves"));
+        generated(GGBlocks.FLOWERING_VINE.getId().getPath(), prefix("block/flowering_vine_1"));
+
         saplingItem(GGBlocks.CHROMATIC_SAPLING);
 
     //LOGS, WOODS, PLANKS//
@@ -84,7 +87,7 @@ public class GGItemModelProvider extends ItemModelProvider {
         generated(GGBlocks.GERBERA_DAISY.getId().getPath(), prefix("block/gerbera_daisy"));
         generated(GGBlocks.MOONFLOWER_CACTUS.getId().getPath(), prefix("block/moonflower_cactus"));
         generated(GGBlocks.WHITE_SAGE_SALVIA.getId().getPath(), prefix("block/white_sage_salvia"));
-        generated(GGBlocks.ANGEL_WINGS_SENECIO.getId().getPath(), prefix("block/angel_wings_senecio"));
+        generated(GGBlocks.STARGAZER_LILY.getId().getPath(), prefix("block/stargazer_lily"));
         generated(GGBlocks.PENNY_BLACK.getId().getPath(), prefix("block/penny_black"));
         generated(GGBlocks.CYMBIDIUM.getId().getPath(), prefix("block/cymbidium"));
 

@@ -1,0 +1,25 @@
+{
+    "ambientocclusion": false,
+    "render_type": "cutout", "textures": {
+        "particle": "gabbysgrove:block/flowering_vine",
+        "vine": "gabbysgrove:block/flowering_vine"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0.8 ],
+            "to": [ 16, 16, 0.8 ],
+            "shade": true,
+            "faces": {
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#vine", "tintindex": 0 },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#vine", "tintindex": 0 }
+            }
+        },
+        {   "from": [ 15.2, 0, 0 ],
+            "to": [ 15.2, 16, 16 ],
+            "shade": true,
+            "faces": {
+                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#vine", "tintindex": 0 },
+                "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#vine", "tintindex": 0 }
+            }
+        }
+    ]
+}

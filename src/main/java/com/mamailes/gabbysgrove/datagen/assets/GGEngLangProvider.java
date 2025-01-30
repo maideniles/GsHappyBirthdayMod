@@ -18,57 +18,83 @@ public class GGEngLangProvider extends LanguageProvider {
     protected void addTranslations() {
 
 //ADD CREATIVE TAB TRANSLATION//
-        add("creativeTab.gg", "Gabby's Grove");
+        add("creativeTabs.gg", "Gabby's Grove");
 
 //ITEMS//
 
         //PINK SAPPHIRE//
-        addItem(GGItems.PINK_SAPPHIRE_SHARDS,"pink_sapphire_shards");
+        addItem(GGItems.PINK_SAPPHIRE_SHARDS,"pink Sapphire Shards");
 
         //PINK SAPPHIRE TOOLS//
-        addItem(GGItems.PINK_SAPPHIRE_SWORD, "pink_sapphire_sword");
-        addItem(GGItems.PINK_SAPPHIRE_AXE, "pink_sapphire_axe");
-        addItem(GGItems.PINK_SAPPHIRE_PICKAXE, "pink_sapphire_pickaxe");
-        addItem(GGItems.PINK_SAPPHIRE_HAMMER, "pink_sapphire_hammer");
-        addItem(GGItems.PINK_SAPPHIRE_SHOVEL, "pink_sapphire_shovel");
-        addItem(GGItems.PINK_SAPPHIRE_HOE, "pink_sapphire_hoe");
+        addItem(GGItems.PINK_SAPPHIRE_SWORD, "Pink Sapphire Sword");
+        addItem(GGItems.PINK_SAPPHIRE_AXE, "pink Sapphire Axe");
+        addItem(GGItems.PINK_SAPPHIRE_PICKAXE, "Pink Sapphire Pickaxe");
+        addItem(GGItems.PINK_SAPPHIRE_HAMMER, "Pink Sapphire Hammer");
+        addItem(GGItems.PINK_SAPPHIRE_SHOVEL, "Pink Sapphire Shovel");
+        addItem(GGItems.PINK_SAPPHIRE_HOE, "Pink Sapphire Hoe");
+        addItem(GGItems.MOTH_SPAWN_EGG, "Moth Spawn Egg");
 
 //BLOCKS//
 
         //PINK_SAPPHIRE//
-        addBlock(GGBlocks.PINK_SAPPHIRE_BLOCK, "pink_sapphire_block");
-        addBlock(GGBlocks.BUDDING_PINK_SAPPHIRE_BLOCK, "budding_pink_sapphire_block");
-        addBlock(GGBlocks.PINK_SAPPHIRE_CLUSTER, "pink_sapphire_cluster");
-        addBlock(GGBlocks.LARGE_PINK_SAPPHIRE_BUD, "large_pink_sapphire_bud");
-        addBlock(GGBlocks.MEDIUM_PINK_SAPPHIRE_BUD, "medium_pink_sapphire_bud");
-        addBlock(GGBlocks.SMALL_PINK_SAPPHIRE_BUD, "small_pink_sapphire_bud");
+        addBlock(GGBlocks.PINK_SAPPHIRE_BLOCK, "Pink Sapphire Block");
+        addBlock(GGBlocks.BUDDING_PINK_SAPPHIRE_BLOCK, "Budding Pink Sapphire Block");
+        addBlock(GGBlocks.PINK_SAPPHIRE_CLUSTER, "Pink Sapphire Cluster");
+        addBlock(GGBlocks.LARGE_PINK_SAPPHIRE_BUD, "Large Pink Sapphire Bud");
+        addBlock(GGBlocks.MEDIUM_PINK_SAPPHIRE_BUD, "Medium Pink Sapphire Bud");
+        addBlock(GGBlocks.SMALL_PINK_SAPPHIRE_BUD, "Small Pink Sapphire Bud");
 
         //CHROMATIC TREE BLOCKS//
-        addBlock(GGBlocks.FLOWERING_LEAVES, "flowering_leaves");
-        addBlock(GGBlocks.CHROMATIC_SAPLING, "chromatic_sapling");
+        addBlock(GGBlocks.FLOWERING_LEAVES, "Flowering Leaves");
+        addBlock(GGBlocks.CHROMATIC_SAPLING, "Chromatic Sapling");
+        addBlock(GGBlocks.FLOWERING_VINE, "Flowering Vine");
 
-        addBlock(GGBlocks.CHROMATIC_LOG, "chromatic_log");
-        addBlock(GGBlocks.CHROMATIC_WOOD, "chromatic_wood");
-        addBlock(GGBlocks.STRIPPED_CHROMATIC_LOG, "stripped_chromatic_log");
-        addBlock(GGBlocks.STRIPPED_CHROMATIC_WOOD, "stripped_chromatic_wood");
-        addBlock(GGBlocks.CHROMATIC_PLANKS, "chromatic_planks");
+
+        addBlock(GGBlocks.CHROMATIC_LOG, "Chromatic Log");
+        addBlock(GGBlocks.CHROMATIC_WOOD, "Chromatic Wood");
+        addBlock(GGBlocks.STRIPPED_CHROMATIC_LOG, "Stripped Chromatic Log");
+        addBlock(GGBlocks.STRIPPED_CHROMATIC_WOOD, "Stripped Chromatic Wood");
+        addBlock(GGBlocks.CHROMATIC_PLANKS, "Chromatic Planks");
 
         //CHROMATIC WOOD BUILDING BLOCKS//
-        addBlock(GGBlocks.CHROMATIC_STAIRS, "chromatic_stairs");
-        addBlock(GGBlocks.CHROMATIC_SLAB, "chromatic_slab");
-        addBlock(GGBlocks.CHROMATIC_FENCE, "chromatic_fence");
-        addBlock(GGBlocks.CHROMATIC_FENCE_GATE, "chromatic_fence_gate");
-        addBlock(GGBlocks.CHROMATIC_PRESSURE_PLATE, "chromatic_pressure_plate");
-        addBlock(GGBlocks.CHROMATIC_BUTTON, "chromatic_button");
-        addBlock(GGBlocks.CHROMATIC_BOOKSHELF, "chromatic_bookshelf");
-        addBlock(GGBlocks.CHROMATIC_DOOR, "chromatic_door");
-        addBlock(GGBlocks.CHROMATIC_TRAPDOOR, "chromatic_trapdoor");
+        addBlock(GGBlocks.CHROMATIC_STAIRS, "Chromatic Stairs");
+        addBlock(GGBlocks.CHROMATIC_SLAB, "Chromatic Slab");
+        addBlock(GGBlocks.CHROMATIC_FENCE, "Chromatic Fence");
+        addBlock(GGBlocks.CHROMATIC_FENCE_GATE, "Chromatic Fence_Gate");
+        addBlock(GGBlocks.CHROMATIC_PRESSURE_PLATE, "Chromatic Pressure Plate");
+        addBlock(GGBlocks.CHROMATIC_BUTTON, "Chromatic Button");
+        addBlock(GGBlocks.CHROMATIC_BOOKSHELF, "chromatic Bookshelf");
+        addBlock(GGBlocks.CHROMATIC_DOOR, "Chromatic Door");
+        addBlock(GGBlocks.CHROMATIC_TRAPDOOR, "Chromatic Trapdoor");
 
-    //ENTITIES//
+        //FLOWERS//
+        addBlock(GGBlocks.BLEEDING_HEARTS, "Bleeding Hearts");
+        addBlock(GGBlocks.HIBISCUS, "Hibiscus");
+        addBlock(GGBlocks.PRICKLY_PEAR_CACTUS, "Prickly Pear Cactus");
+        addBlock(GGBlocks.GREEN_LACE_PRIMROSE, "Green Lace Primrose");
+        addBlock(GGBlocks.GREEN_GAMBLER_HELLEBORUS, "Green Gambler Helleborus");
+        addBlock(GGBlocks.TURQUOISE_IXIA, "Turquoise Ixia");
+        addBlock(GGBlocks.BLUE_CHICORY, "Blue Chicory");
+        addBlock(GGBlocks.BLUE_SAGE_SALVIA, "Blue Sage Salvia");
+        addBlock(GGBlocks.VERBENA_LANAI, "Verbena Lanai");
+        addBlock(GGBlocks.SNAPDRAGON, "Snapdragon");
+        addBlock(GGBlocks.GERBERA_DAISY, "Gerbera Daisy");
+        addBlock(GGBlocks.MOONFLOWER_CACTUS, "Moonflower Cactus");
+        addBlock(GGBlocks.WHITE_SAGE_SALVIA, "White Sage Salvia");
+        addBlock(GGBlocks.STARGAZER_LILY, "Stargazer Lily");
+        addBlock(GGBlocks.PENNY_BLACK, "Penny Black");
+        addBlock(GGBlocks.CYMBIDIUM, "Cymbidium");
+
+        addBlock(GGBlocks.RHODOTUS, "Rhodotus");
+        addBlock(GGBlocks.DEATH_CAP, "Death Cap");
+        addBlock(GGBlocks.PARROT_WAXCAP, "Parrot Wax Cap");
+        addBlock(GGBlocks.PIXIES_PARASOL, "Pixies Parasol");
+        addBlock(GGBlocks.AMETHYST_DECEIVER, "Amethyst Deceiver");
+
+        //ENTITIES//
 
         //MOTH//
-        this.addEntityType(GGEntities.MOTH,"Moth");
-        this.addItem(GGItems.MOTH_SPAWN_EGG, "Moth Spawn Egg");
+          addEntityType(GGEntities.MOTH,"Giant Lunar Moth");
 
     }
 

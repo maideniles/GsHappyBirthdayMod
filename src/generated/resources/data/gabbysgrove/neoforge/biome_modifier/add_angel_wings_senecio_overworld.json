@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "#minecraft:is_overworld",
-  "features": "gabbysgrove:angel_wings_senecio",
+  "features": "gabbysgrove:stargazer_lily",
   "step": "vegetal_decoration"
 }

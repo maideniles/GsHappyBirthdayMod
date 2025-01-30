@@ -1,5 +1,6 @@
-// 1.21.1	2025-01-25T22:44:59.36628	Tags for minecraft:item mod id gabbysgrove
+// 1.21.1	2025-01-30T04:40:49.126137	Tags for minecraft:item mod id gabbysgrove
 2ac2b5880a38e923441c97145eb0238b5d4bf04f data/gabbysgrove/tags/item/chromatic_logs.json
+ebaf74aa861968ef9c407fc0446d5bc8d443cf81 data/gabbysgrove/tags/item/moth_food.json
 6499fb35c361eb78c31eb0f59a397d9509d1d235 data/minecraft/tags/item/axes.json
 db3b321b4d11cac1bf30b6db17c3d57d96e6328f data/minecraft/tags/item/hoes.json
 2ac2b5880a38e923441c97145eb0238b5d4bf04f data/minecraft/tags/item/logs_that_burn.json

@@ -10,10 +10,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -24,11 +26,13 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
+import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -36,6 +40,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -47,7 +52,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, VariantHolder<Holder<MothVariant>> {
+public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, VariantHolder<Holder<MothVariant>>,Saddleable {
     public static final int GROUND_CLEARENCE_THRESHOLD = 3;
     private static final EntityDataAccessor<Holder<MothVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Moth.class, GGEntityDataSerializers.MOTH_VARIANT.get());
     private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenPlay("animation.moth.idle");
@@ -60,6 +65,13 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
     private final GroundPathNavigation groundNavigation;
     private final FlyingPathNavigation flyingNavigation;
 
+    private static final EntityDataAccessor<Byte> DATA_ID_FLAGS = SynchedEntityData.defineId(AbstractHorse.class, EntityDataSerializers.BYTE);
+    private static final int FLAG_TAME = 2;
+    private static final int FLAG_SADDLE = 4;
+    private static final int FLAG_BRED = 8;
+    private static final int FLAG_EATING = 16;
+
+
     public Moth(EntityType<? extends Moth> entityType, Level level) {
         super(entityType, level);
         this.moveControl = new MothMoveController(this);
@@ -71,6 +83,10 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
         this.groundNavigation.setCanFloat(true);
 
         this.navigation = this.groundNavigation;
+    }
+
+    public @NotNull LookControl getLookControl() {
+        return this.lookControl;
     }
 
     public static AttributeSupplier.Builder createAttributes(){
@@ -120,6 +136,7 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(1.5F, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.0F, 10.0F, 2.0F));
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0F));
@@ -408,5 +425,27 @@ public class Moth extends TamableAnimal implements GeoEntity, FlyingAnimal, Vari
     @Override
     public Holder<MothVariant> getVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
+    }
+
+
+    @Override
+    public boolean isSaddleable() {
+        return this.isAlive() && !this.isBaby() && this.isTame();
+    }
+
+    @Override
+    public void equipSaddle(ItemStack itemStack, @Nullable SoundSource soundSource) {
+
+    }
+
+    @Override
+    public boolean isSaddled() {
+        {
+            return this.getFlag(4);
+        }
+    }
+
+    protected boolean getFlag(int flagId) {
+        return (this.entityData.get(DATA_ID_FLAGS) & flagId) != 0;
     }
 }

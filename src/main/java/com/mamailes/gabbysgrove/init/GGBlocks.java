@@ -76,6 +76,13 @@ public class GGBlocks {
     public static final DeferredBlock<Block> CHROMATIC_SAPLING = registerBlock("chromatic_sapling",
             () -> new SaplingBlock(GGTreeGrowers.CHROMATIC, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
+    //VINES//
+
+    public static final DeferredBlock<Block> FLOWERING_VINE = registerBlock("flowering_vine",
+            () -> new GGVineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(.2F).noOcclusion().noCollission()));
+
+
+
     //CHROMATIC BUILDING BLOCKS//
     public static final DeferredBlock<StairBlock> CHROMATIC_STAIRS = registerBlock("chromatic_stairs",
             () -> new StairBlock(GGBlocks.CHROMATIC_PLANKS.get().defaultBlockState(),
@@ -121,7 +128,7 @@ public class GGBlocks {
 
     public static final DeferredBlock<Block>LARGE_PINK_SAPPHIRE_BUD = registerBlock("large_pink_sapphire_bud",
             () -> new AmethystClusterBlock(5.0F, 3.0F,BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).lightLevel((p_152629_) -> {return 4;})));
+                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).lightLevel((p_152629_) -> {return 4;})));
 
     public static final DeferredBlock<Block>MEDIUM_PINK_SAPPHIRE_BUD = registerBlock("medium_pink_sapphire_bud",
             () -> new AmethystClusterBlock(4.0F, 3.0F, BlockBehaviour.Properties.of()
@@ -172,7 +179,7 @@ public class GGBlocks {
     public static final DeferredBlock<Block> WHITE_SAGE_SALVIA = registerBlock("white_sage_salvia",
             () -> new GGFlowerBlock(BlockBehaviour.Properties.of().strength(2.0F).noOcclusion().noCollission().instabreak().sound(SoundType.CROP)));
 
-    public static final DeferredBlock<Block> ANGEL_WINGS_SENECIO = registerBlock("angel_wings_senecio",
+    public static final DeferredBlock<Block> STARGAZER_LILY = registerBlock("stargazer_lily",
             () -> new GGFlowerBlock(BlockBehaviour.Properties.of().strength(2.0F).noOcclusion().noCollission().instabreak().sound(SoundType.CROP)));
 
     public static final DeferredBlock<Block> PENNY_BLACK = registerBlock("penny_black",
@@ -251,8 +258,8 @@ public class GGBlocks {
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT),WHITE_SAGE_SALVIA,
                     BlockBehaviour.Properties.ofFullCopy((Blocks.POTTED_ALLIUM)).noOcclusion()));
 
-    public static final DeferredBlock<Block> ANGEL_WINGS_SENECIO_POTTED = BLOCKS.register("angel_wings_senecio_potted",
-            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT),ANGEL_WINGS_SENECIO,
+    public static final DeferredBlock<Block> STARGAZER_LILY_POTTED = BLOCKS.register("stargazer_lily_potted",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), STARGAZER_LILY,
                     BlockBehaviour.Properties.ofFullCopy((Blocks.POTTED_ALLIUM)).noOcclusion()));
 
     public static final DeferredBlock<Block> PENNY_BLACK_POTTED = BLOCKS.register("penny_black_potted",

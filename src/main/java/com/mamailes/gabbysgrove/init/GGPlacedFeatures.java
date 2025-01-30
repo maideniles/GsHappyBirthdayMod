@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -21,7 +22,9 @@ public class GGPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PINK_SAPPHIREE_GEODE_PLACEMENT_KEY = registerKey("pink_sapphire_geode_placement");
     public static final ResourceKey<PlacedFeature> CHROMATIC_PLACEMENT = registerKey("chromatic_placement");
 
-  //  public static final ResourceKey<PlacedFeature> FLOWERS_OVERWORLD_PLACEMENT = registerKey("flowers_overworld_placement");
+    public static final ResourceKey<PlacedFeature> FLOWERS_OVERWORLD_PLACEMENT = registerKey("flowers_overworld_placement");
+    //BUSHES//
+    public static final ResourceKey<PlacedFeature> CHROMATIC_BUSH_PLACEMENT = registerKey("chromatic_bush_placement");
 
 
     public static final ResourceKey<PlacedFeature> BLEEDING_HEARTS_PLACEMENT = registerKey("bleeding_hearts");
@@ -37,7 +40,7 @@ public class GGPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GERBERA_DAISY_PLACEMENT = registerKey("gerbera_daisy");
     public static final ResourceKey<PlacedFeature> MOONFLOWER_CACTUS_PLACEMENT = registerKey("moonflower_cactus");
     public static final ResourceKey<PlacedFeature> WHITE_SAGE_SALVIA_PLACEMENT = registerKey("white_sage_salvia");
-    public static final ResourceKey<PlacedFeature> ANGEL_WINGS_SENECIO_PLACEMENT = registerKey("angel_wings_senecio");
+    public static final ResourceKey<PlacedFeature> STARGAZER_LILY_PLACEMENT = registerKey("stargazer_lily");
     public static final ResourceKey<PlacedFeature> PENNY_BLACK_PLACEMENT = registerKey("paperwhite");
     public static final ResourceKey<PlacedFeature> CYMBIDIUM_PLACEMENT = registerKey("white_poinsettia");
 
@@ -55,6 +58,7 @@ public class GGPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
 
 
+
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
 
         //GEODE//
@@ -68,7 +72,8 @@ public class GGPlacedFeatures {
         context.register(CHROMATIC_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.CHROMATIC_KEY), ModTreeCheckArea(PlacementUtils.countExtra(10, 0.2F, 5), GGBlocks.CHROMATIC_SAPLING.get().defaultBlockState())));
 
         //FLOWERS//
-    //    context.register(FLOWERS_OVERWORLD_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.FLOWERS_OVERWORLD), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(5), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(20), BiomeFilter.biome()).build()));
+        context.register(FLOWERS_OVERWORLD_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.FLOWERS_OVERWORLD), ModTreeCheckArea(PlacementUtils.countExtra(5, 0.2F, 1), Blocks.OAK_SAPLING.defaultBlockState())));
+        context.register(CHROMATIC_BUSH_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.CHROMATIC_BUSH), ModTreeCheckArea(PlacementUtils.countExtra(5, 0.2F, 1), Blocks.OAK_SAPLING.defaultBlockState())));
 
 
         context.register(BLEEDING_HEARTS_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.BLEEDING_HEARTS), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
@@ -84,7 +89,7 @@ public class GGPlacedFeatures {
         context.register(GERBERA_DAISY_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.GERBERA_DAISY), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
         context.register(MOONFLOWER_CACTUS_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.MOONFLOWER_CACTUS), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
         context.register(WHITE_SAGE_SALVIA_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.WHITE_SAGE_SALVIA), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
-        context.register(ANGEL_WINGS_SENECIO_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.ANGEL_WINGS_SENECIO), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
+        context.register(STARGAZER_LILY_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.STARGAZER_LILY), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
         context.register(PENNY_BLACK_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.PENNY_BLACK), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
         context.register(CYMBIDIUM_PLACEMENT, new PlacedFeature(features.getOrThrow(GGConfiguredFeatures.CYMBIDIUM), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(2), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(60), BiomeFilter.biome()).build()));
 

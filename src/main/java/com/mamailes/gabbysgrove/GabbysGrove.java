@@ -5,6 +5,7 @@ import com.mamailes.gabbysgrove.init.*;
 import com.mamailes.gabbysgrove.world.GGBiomeSurfaceRuleData;
 import com.mamailes.gabbysgrove.world.GGRegion1;
 import com.mamailes.gabbysgrove.world.GGRegion2;
+import com.mamailes.gabbysgrove.world.feature.tree.decorator.GGTreeDecoratorTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.neoforge.registries.*;
@@ -48,6 +49,7 @@ public class GabbysGrove
         GGCreativeModeTabs.register(modEventBus);
         GGEntities.register(modEventBus);
         GGEntityDataSerializers.register(modEventBus);
+        GGTreeDecoratorTypes.TREE_DECORATORS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerDatapackRegistries);
@@ -90,7 +92,7 @@ public class GabbysGrove
                         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.GERBERA_DAISY.getId(), GGBlocks.GERBERA_DAISY_POTTED);
                         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.MOONFLOWER_CACTUS.getId(), GGBlocks.MOONFLOWER_CACTUS_POTTED);
                         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.WHITE_SAGE_SALVIA.getId(), GGBlocks.WHITE_SAGE_SALVIA_POTTED);
-                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.ANGEL_WINGS_SENECIO.getId(), GGBlocks.ANGEL_WINGS_SENECIO_POTTED);
+                        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.STARGAZER_LILY.getId(), GGBlocks.STARGAZER_LILY_POTTED);
                         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.PENNY_BLACK.getId(), GGBlocks.PENNY_BLACK_POTTED);
                         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(GGBlocks.CYMBIDIUM.getId(), GGBlocks.CYMBIDIUM_POTTED);
 

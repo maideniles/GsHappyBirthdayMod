@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {"model": "gabbysgrove:block/flowering_leaves"},
+      {"model": "gabbysgrove:block/flowering_leaves_1"},
+      {"model": "gabbysgrove:block/flowering_leaves_2"},
+      {"model":  "gabbysgrove:block/flowering_leaves_3"},
+      {"model":  "gabbysgrove:block/flowering_leaves_4"}
+
+    ]
+
+  }
+}

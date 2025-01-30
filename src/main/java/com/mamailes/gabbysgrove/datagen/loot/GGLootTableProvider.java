@@ -34,6 +34,7 @@ public class GGLootTableProvider extends BlockLootSubProvider {
         this.add(GGBlocks.FLOWERING_LEAVES.get(), block ->
                 createLeavesDrops(block, GGBlocks.CHROMATIC_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         dropSelf(GGBlocks.CHROMATIC_SAPLING.get());
+        dropSelf(GGBlocks.FLOWERING_VINE.get());
 
         //LOGS, WOODS, PLANKS//
         dropSelf(GGBlocks.CHROMATIC_LOG.get());
@@ -78,7 +79,7 @@ public class GGLootTableProvider extends BlockLootSubProvider {
         dropSelf(GGBlocks.GERBERA_DAISY.get());
         dropSelf(GGBlocks.MOONFLOWER_CACTUS.get());
         dropSelf(GGBlocks.WHITE_SAGE_SALVIA.get());
-        dropSelf(GGBlocks.ANGEL_WINGS_SENECIO.get());
+        dropSelf(GGBlocks.STARGAZER_LILY.get());
         dropSelf(GGBlocks.PENNY_BLACK.get());
         dropSelf(GGBlocks.CYMBIDIUM.get());
 
@@ -103,7 +104,7 @@ public class GGLootTableProvider extends BlockLootSubProvider {
         dropPottedContents(GGBlocks.GERBERA_DAISY_POTTED.get());
         dropPottedContents(GGBlocks.MOONFLOWER_CACTUS_POTTED.get());
         dropPottedContents(GGBlocks.WHITE_SAGE_SALVIA_POTTED.get());
-        dropPottedContents(GGBlocks.ANGEL_WINGS_SENECIO_POTTED.get());
+        dropPottedContents(GGBlocks.STARGAZER_LILY_POTTED.get());
         dropPottedContents(GGBlocks.PENNY_BLACK_POTTED.get());
         dropPottedContents(GGBlocks.CYMBIDIUM_POTTED.get());
 

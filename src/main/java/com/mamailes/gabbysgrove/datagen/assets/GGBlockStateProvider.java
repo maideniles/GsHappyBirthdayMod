@@ -23,7 +23,7 @@ public class GGBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         //LEAVES, SAPLING//
-        leavesBlock(GGBlocks.FLOWERING_LEAVES);
+     //   leavesBlock(GGBlocks.FLOWERING_LEAVES);
         crossBlock(GGBlocks.CHROMATIC_SAPLING);
 
         //LOGS, WOODS, PLANKS//
@@ -98,8 +98,8 @@ blockWithItem(GGBlocks.CHROMATIC_PLANKS);
         simpleBlockWithItem(GGBlocks.WHITE_SAGE_SALVIA.get(), models().cross(blockTexture(GGBlocks.WHITE_SAGE_SALVIA.get()).getPath(),
                 blockTexture(GGBlocks.WHITE_SAGE_SALVIA.get())).renderType("cutout"));
 
-        simpleBlockWithItem(GGBlocks.ANGEL_WINGS_SENECIO.get(), models().cross(blockTexture(GGBlocks.ANGEL_WINGS_SENECIO.get()).getPath(),
-                blockTexture(GGBlocks.ANGEL_WINGS_SENECIO.get())).renderType("cutout"));
+        simpleBlockWithItem(GGBlocks.STARGAZER_LILY.get(), models().cross(blockTexture(GGBlocks.STARGAZER_LILY.get()).getPath(),
+                blockTexture(GGBlocks.STARGAZER_LILY.get())).renderType("cutout"));
 
         simpleBlockWithItem(GGBlocks.PENNY_BLACK.get(), models().cross(blockTexture(GGBlocks.PENNY_BLACK.get()).getPath(),
                 blockTexture(GGBlocks.PENNY_BLACK.get())).renderType("cutout"));
@@ -166,8 +166,8 @@ blockWithItem(GGBlocks.CHROMATIC_PLANKS);
         simpleBlock(GGBlocks.WHITE_SAGE_SALVIA_POTTED.get(), models().withExistingParent(GGBlocks.WHITE_SAGE_SALVIA_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.WHITE_SAGE_SALVIA.get())));
 
-        simpleBlock(GGBlocks.ANGEL_WINGS_SENECIO_POTTED.get(), models().withExistingParent(GGBlocks.ANGEL_WINGS_SENECIO_POTTED.getId().getPath(),
-                "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.ANGEL_WINGS_SENECIO.get())));
+        simpleBlock(GGBlocks.STARGAZER_LILY_POTTED.get(), models().withExistingParent(GGBlocks.STARGAZER_LILY_POTTED.getId().getPath(),
+                "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.STARGAZER_LILY.get())));
 
         simpleBlock(GGBlocks.PENNY_BLACK_POTTED.get(), models().withExistingParent(GGBlocks.PENNY_BLACK_POTTED.getId().getPath(),
                 "block/flower_pot_cross").renderType("cutout").texture("plant", blockTexture(GGBlocks.PENNY_BLACK.get())));

@@ -1,7 +1,16 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "decorators": [],
+    "decorators": [
+      {
+        "type": "gabbysgrove:leaf_vines",
+        "probability": 0.05
+      },
+      {
+        "type": "gabbysgrove:trunk_vines",
+        "probability": 0.05
+      }
+    ],
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
