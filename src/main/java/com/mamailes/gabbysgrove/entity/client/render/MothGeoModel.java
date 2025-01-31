@@ -14,9 +14,4 @@ public class MothGeoModel extends DefaultedEntityGeoModel<Moth> {
     public ResourceLocation getTextureResource(Moth animatable) {
         return animatable.getTexture();
     }
-
-
-
-
-
 }
